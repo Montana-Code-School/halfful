@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Navbar from "./Navbar";
+import Navbar from "./Components/Navbar";
+import Goals from "./Components/Goals";
 import reactbootstrap from 'react-bootstrap';
 
 class App extends Component {
@@ -10,12 +11,13 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Title</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          To get started enter your daily water goal below.
         </p>
+        <div>
+          <Goals />
+        </div>
       </div>
     );
   }
