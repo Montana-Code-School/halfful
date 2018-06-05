@@ -15,6 +15,7 @@ class Goals extends React.Component{
       <h3> Water goal: </h3>
       <h3> Water currently consumed: </h3>
       <h3> Amount of water to go: </h3>
+      <br></br>
     </div>
 
     )
