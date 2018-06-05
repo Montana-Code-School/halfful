@@ -1,4 +1,6 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Goals extends React.Component{
   constructor(){
@@ -8,11 +10,24 @@ class Goals extends React.Component{
     return (
     <div>
       <h3>What is your water goal today?</h3>
-      <form className="form-inline">
-        <input className="form-control mr-sm-2" type="watergoal" placeholder="Enter your water goal" aria-label="Water Goal"/>
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+        <form noValidate autoComplete="off">
+          <TextField
+            id="waterGoals"
+            label="Name"
+            margin="normal"
+          />
+        </form>
+        <RaisedButton type="submit" label="Submit" primary />
+       <h3>How much water did you just drink? </h3>
+       <form noValidate autoComplete="off">
+        <TextField
+          id="name"
+          label="Name"
+          margin="normal"
+        />
       </form>
-      <h3> Water goal: </h3>
+      <RaisedButton type="submit" label="Update" primary />
+
       <h3> Water currently consumed: </h3>
       <h3> Amount of water to go: </h3>
       <br></br>
