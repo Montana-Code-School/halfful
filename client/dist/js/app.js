@@ -15221,8 +15221,10 @@ var Goals = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Goals.__proto__ || Object.getPrototypeOf(Goals)).call(this));
 
     _this.state = {
-      waterGoal: 0
-
+      waterGoal: 0,
+      amountJustConsumed: 0,
+      leftToGo: 0,
+      totalAmountConsumed: 0
     };
 
     _this.submitButton = _this.submitButton.bind(_this);
@@ -15235,30 +15237,26 @@ var Goals = function (_React$Component) {
 
   _createClass(Goals, [{
     key: 'submitButton',
-    value: function submitButton(e) {
-      console.log("click");
-    }
+    value: function submitButton(e) {}
   }, {
     key: 'updateButton',
-    value: function updateButton(e) {
-      console.log("click");
-    }
+    value: function updateButton(e) {}
   }, {
     key: 'goalInput',
     value: function goalInput(e) {
-      this.setState({
-        waterGoal: e.target.value
-      });
-      console.log(this.state.waterGoal);
+      this.setState({ waterGoal: e.target.value });
     }
   }, {
     key: 'updateGoal',
     value: function updateGoal(e) {
-      console.log(e.target.value);
+      this.setState({ amountJustConsumed: e.target.value });
     }
   }, {
     key: 'render',
     value: function render() {
+      var newTotal = parseInt(this.state.totalAmountConsumed) + parseInt(this.state.amountJustConsumed);
+      var amountLeft = parseInt(this.state.waterGoal) - newTotal;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -15269,47 +15267,41 @@ var Goals = function (_React$Component) {
         ),
         _react2.default.createElement(
           'form',
-          { noValidate: true, autoComplete: 'off' },
-          _react2.default.createElement(_TextField2.default, {
-            onChange: this.goalInput,
-            id: 'waterGoals',
-            label: 'waterGoals',
-            margin: 'normal'
-          })
+          { noValidate: 'noValidate', autoComplete: 'off' },
+          _react2.default.createElement(_TextField2.default, { onChange: this.goalInput, id: 'waterGoals', label: 'waterGoals', margin: 'normal' })
         ),
-        _react2.default.createElement(_RaisedButton2.default, { onClick: this.submitButton, type: 'submit', label: 'Submit', primary: true }),
+        _react2.default.createElement(_RaisedButton2.default, { onClick: this.submitButton, type: 'submit', label: 'Submit', primary: 'primary' }),
         _react2.default.createElement(
           'h3',
           null,
-          'How much water did you just drink? '
+          'How much water did you just drink?'
         ),
         _react2.default.createElement(
           'form',
-          { noValidate: true, autoComplete: 'off' },
-          _react2.default.createElement(_TextField2.default, {
-            onChange: this.updateGoal,
-            id: 'updateWater',
-            label: 'updateWater',
-            margin: 'normal'
-          })
+          { noValidate: 'noValidate', autoComplete: 'off' },
+          _react2.default.createElement(_TextField2.default, { onChange: this.updateGoal, id: 'updateWater', label: 'updateWater', margin: 'normal' })
         ),
-        _react2.default.createElement(_RaisedButton2.default, { onClick: this.updateButton, type: 'submit', label: 'Update', primary: true }),
+        _react2.default.createElement(_RaisedButton2.default, { onClick: this.updateButton, type: 'submit', label: 'Update', primary: 'primary' }),
         _react2.default.createElement(
           'h3',
           null,
-          ' Your daily water goal is: ',
+          'Your daily water goal is: ',
           this.state.waterGoal,
-          ' ounces'
+          'ounces'
         ),
         _react2.default.createElement(
           'h3',
           null,
-          ' Water currently consumed: '
+          'Water currently consumed: ',
+          newTotal,
+          'ounces'
         ),
         _react2.default.createElement(
           'h3',
           null,
-          ' Amount of water to go: '
+          'Amount of water to go: ',
+          amountLeft,
+          'ounces'
         ),
         _react2.default.createElement('br', null)
       );
