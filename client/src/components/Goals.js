@@ -21,7 +21,7 @@ class Goals extends React.Component {
   }
 
   submitButton(e) {
-    
+
   }
 
   updateButton(e) {
@@ -42,25 +42,22 @@ class Goals extends React.Component {
     return (<div>
       <h3>What is your water goal today?</h3>
       <form noValidate="noValidate" autoComplete="off">
-        <TextField onChange={this.goalInput} id="waterGoals" label="waterGoals" margin="normal"/>
+        <TextField onChange={this.goalInput} id="waterGoals" label="waterGoals"/>
       </form>
-      <RaisedButton onClick={this.submitButton} type="submit" label="Submit" primary="primary"/>
+      <RaisedButton onClick={this.submitButton} type="submit" label="Submit"/>
       <h3>How much water did you just drink?
       </h3>
       <form noValidate="noValidate" autoComplete="off">
-        <TextField onChange={this.updateGoal} id="updateWater" label="updateWater" margin="normal"/>
+        <TextField onChange={this.updateGoal} id="updateWater" label="updateWater"/>
       </form>
-      <RaisedButton onClick={this.updateButton} type="submit" label="Update" primary="primary"/>
+      <RaisedButton onClick={this.updateButton} type="submit" label="Update"/>
 
       <h3>
-        Your daily water goal is: {this.state.waterGoal}
-        ounces</h3>
+        Your daily water goal is: {this.state.waterGoal} ounces</h3>
       <h3>
-        Water currently consumed: {newTotal}
-        ounces</h3>
+        Water currently consumed: {newTotal} ounces</h3>
       <h3>
-        Amount of water to go: {amountLeft}
-        ounces</h3>
+        Amount of water to go: {amountLeft} ounces</h3>
       <br></br>
     </div>)
   }

@@ -14879,10 +14879,6 @@ var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
 var _reactRouterDom = __webpack_require__(115);
 
-var _Base = __webpack_require__(190);
-
-var _Base2 = _interopRequireDefault(_Base);
-
 var _HomePage = __webpack_require__(193);
 
 var _HomePage2 = _interopRequireDefault(_HomePage);
@@ -15078,41 +15074,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_Main2.default, null), document.getElementById('react-app'));
 
 /***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// import React, { PropTypes } from 'react';
-// import { Link, IndexLink } from 'react-router-dom';
-//
-//
-// const Base = ({ children }) => (
-//   <div>
-//     <div className="top-bar">
-//       <div className="top-bar-left">
-//         <IndexLink to="/">React App</IndexLink>
-//       </div>
-//
-//       <div className="top-bar-right">
-//         <Link to="/login">Log in</Link>
-//         <Link to="/signup">Sign up</Link>
-//       </div>
-//
-//     </div>
-//
-//     {children}
-//
-//   </div>
-// );
-//
-// Base.propTypes = {
-//   children: PropTypes.object.isRequired
-// };
-//
-// export default Base;
-
-
-/***/ }),
+/* 190 */,
 /* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15268,9 +15230,9 @@ var Goals = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { noValidate: 'noValidate', autoComplete: 'off' },
-          _react2.default.createElement(_TextField2.default, { onChange: this.goalInput, id: 'waterGoals', label: 'waterGoals', margin: 'normal' })
+          _react2.default.createElement(_TextField2.default, { onChange: this.goalInput, id: 'waterGoals', label: 'waterGoals' })
         ),
-        _react2.default.createElement(_RaisedButton2.default, { onClick: this.submitButton, type: 'submit', label: 'Submit', primary: 'primary' }),
+        _react2.default.createElement(_RaisedButton2.default, { onClick: this.submitButton, type: 'submit', label: 'Submit' }),
         _react2.default.createElement(
           'h3',
           null,
@@ -15279,29 +15241,29 @@ var Goals = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { noValidate: 'noValidate', autoComplete: 'off' },
-          _react2.default.createElement(_TextField2.default, { onChange: this.updateGoal, id: 'updateWater', label: 'updateWater', margin: 'normal' })
+          _react2.default.createElement(_TextField2.default, { onChange: this.updateGoal, id: 'updateWater', label: 'updateWater' })
         ),
-        _react2.default.createElement(_RaisedButton2.default, { onClick: this.updateButton, type: 'submit', label: 'Update', primary: 'primary' }),
+        _react2.default.createElement(_RaisedButton2.default, { onClick: this.updateButton, type: 'submit', label: 'Update' }),
         _react2.default.createElement(
           'h3',
           null,
           'Your daily water goal is: ',
           this.state.waterGoal,
-          'ounces'
+          ' ounces'
         ),
         _react2.default.createElement(
           'h3',
           null,
           'Water currently consumed: ',
           newTotal,
-          'ounces'
+          ' ounces'
         ),
         _react2.default.createElement(
           'h3',
           null,
           'Amount of water to go: ',
           amountLeft,
-          'ounces'
+          ' ounces'
         ),
         _react2.default.createElement('br', null)
       );
