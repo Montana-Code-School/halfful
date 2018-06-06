@@ -8,6 +8,8 @@ const UserSchema = new mongoose.Schema({
     index: { unique: true }
   },
   password: String,
+  waterGoal: Number,
+  totalAmountConsumed: Number,
   name: String
 });
 
