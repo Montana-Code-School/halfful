@@ -15129,7 +15129,10 @@ var Dashboard = function Dashboard(_ref) {
         '!',
         _react2.default.createElement('br', null)
       ),
-      _react2.default.createElement(_Goals2.default, null)
+      _react2.default.createElement(_Goals2.default, {
+        waterGoal: user.waterGoal,
+        totalAmountConsumed: user.totalAmountConsumed
+      })
     )
   );
 };
@@ -15150,6 +15153,8 @@ exports.default = Dashboard;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -15180,10 +15185,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Goals = function (_React$Component) {
   _inherits(Goals, _React$Component);
 
-  function Goals() {
+  function Goals(props) {
     _classCallCheck(this, Goals);
 
-    var _this = _possibleConstructorReturn(this, (Goals.__proto__ || Object.getPrototypeOf(Goals)).call(this));
+    var _this = _possibleConstructorReturn(this, (Goals.__proto__ || Object.getPrototypeOf(Goals)).call(this, props));
 
     _this.state = {
       waterGoal: 0,
@@ -15207,9 +15212,7 @@ var Goals = function (_React$Component) {
       fetch('/api/dashboard', {
         method: 'GET',
         headers: {
-          Authorization: 'bearer ' + _Auth2.default.getToken()
-        }
-      }).then(function (res) {
+          Authorization: 'bearer ' + _Auth2.default.getToken() } }).then(function (res) {
         return res.json();
       }).then(function (data) {
         return console.log(data);
@@ -15217,7 +15220,9 @@ var Goals = function (_React$Component) {
     }
   }, {
     key: 'updateButton',
-    value: function updateButton(e) {}
+    value: function updateButton(e) {
+      console.log(_typeof(this.props.totalAmountConsumed));
+    }
   }, {
     key: 'goalInput',
     value: function goalInput(e) {
@@ -15226,13 +15231,14 @@ var Goals = function (_React$Component) {
   }, {
     key: 'updateGoal',
     value: function updateGoal(e) {
+
       this.setState({ amountJustConsumed: e.target.value });
     }
   }, {
     key: 'render',
     value: function render() {
-      var newTotal = parseInt(this.state.totalAmountConsumed) + parseInt(this.state.amountJustConsumed);
-      var amountLeft = parseInt(this.state.waterGoal) - newTotal;
+      var newTotal = this.state.totalAmountConsumed + this.state.amountJustConsumed;
+      var amountLeft = this.props.waterGoal - this.props.totalAmountConsumed;
 
       return _react2.default.createElement(
         'div',
@@ -15245,7 +15251,11 @@ var Goals = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { noValidate: 'noValidate', autoComplete: 'off' },
-          _react2.default.createElement(_TextField2.default, { onChange: this.goalInput, id: 'waterGoals', label: 'waterGoals' })
+          _react2.default.createElement(_TextField2.default, {
+            onChange: this.goalInput,
+            id: 'waterGoals',
+            label: 'waterGoals'
+          })
         ),
         _react2.default.createElement(_RaisedButton2.default, { onClick: this.submitButton, type: 'submit', label: 'Submit' }),
         _react2.default.createElement(
@@ -15263,14 +15273,14 @@ var Goals = function (_React$Component) {
           'h3',
           null,
           'Your daily water goal is: ',
-          this.state.waterGoal,
+          this.props.waterGoal,
           ' ounces'
         ),
         _react2.default.createElement(
           'h3',
           null,
           'Water currently consumed: ',
-          newTotal,
+          this.props.totalAmountConsumed,
           ' ounces'
         ),
         _react2.default.createElement(

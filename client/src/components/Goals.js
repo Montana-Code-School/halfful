@@ -6,8 +6,8 @@ import Auth from '../modules/Auth';
 
 
 class Goals extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       waterGoal: 0,
@@ -26,17 +26,15 @@ class Goals extends React.Component {
   submitButton(evt) {
     evt.preventDefault()
     fetch('/api/dashboard',{
-     method: 'GET',
-     headers: {
-     Authorization: `bearer ${Auth.getToken()}`
+      method: 'GET',
+      headers: {
+      Authorization: `bearer ${Auth.getToken()}`}})
+    .then ( ( res )  => {return res.json()})
+    .then (data => console.log(data));
   }
-})
-      .then ( ( res )  => {return res.json()})
-      .then (data => console.log(data));
-    }
 
   updateButton(e) {
-
+      console.log(typeof this.props.totalAmountConsumed);
   }
 
   goalInput(e) {
@@ -44,16 +42,21 @@ class Goals extends React.Component {
   }
 
   updateGoal(e) {
+
     this.setState({amountJustConsumed: e.target.value})
   }
   render() {
-    const newTotal = parseInt(this.state.totalAmountConsumed) + parseInt(this.state.amountJustConsumed);
-    const amountLeft = parseInt(this.state.waterGoal) - newTotal;
+    const newTotal = this.state.totalAmountConsumed + this.state.amountJustConsumed;
+    const amountLeft = this.props.waterGoal - this.props.totalAmountConsumed;
 
     return (<div>
       <h3>What is your water goal today?</h3>
       <form noValidate="noValidate" autoComplete="off">
-        <TextField onChange={this.goalInput} id="waterGoals" label="waterGoals"/>
+        <TextField
+          onChange={this.goalInput}
+          id="waterGoals"
+          label="waterGoals"
+        />
       </form>
       <RaisedButton onClick={this.submitButton} type="submit" label="Submit"/>
       <h3>How much water did you just drink?
@@ -64,9 +67,9 @@ class Goals extends React.Component {
       <RaisedButton onClick={this.updateButton} type="submit" label="Update"/>
 
       <h3>
-        Your daily water goal is: {this.state.waterGoal} ounces</h3>
+        Your daily water goal is: {this.props.waterGoal} ounces</h3>
       <h3>
-        Water currently consumed: {newTotal} ounces</h3>
+        Water currently consumed: {this.props.totalAmountConsumed} ounces</h3>
       <h3>
         Amount of water to go: {amountLeft} ounces</h3>
       <br></br>
