@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Auth from '../modules/Auth';
+import Button from '@material-ui/core/Button';
+
 
 
 
@@ -64,7 +66,8 @@ class Goals extends React.Component {
       <form noValidate="noValidate" autoComplete="off">
         <TextField onChange={this.updateGoal} id="updateWater" label="updateWater"/>
       </form>
-      <RaisedButton onClick={this.updateButton} type="submit" label="Update"/>
+      <RaisedButton onClick={this.updateButton} type="submit" label="Update" color= 'primary'/>
+      <Button variant= "contained" color="primary" className = ''></Button>
 
       <h3>
         Your daily water goal is: {this.props.waterGoal} ounces</h3>
