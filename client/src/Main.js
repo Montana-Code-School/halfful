@@ -65,6 +65,7 @@ class Main extends Component {
   componentDidMount() {
     // check if user is logged in on refresh
     this.toggleAuthenticateStatus()
+
   }
 
   toggleAuthenticateStatus() {

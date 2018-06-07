@@ -2,7 +2,6 @@ import React from 'react';
 import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.jsx';
 
-<DashboardPage/>
 class DashboardPage extends React.Component {
 
   /**
@@ -13,7 +12,7 @@ class DashboardPage extends React.Component {
 
     this.state = {
       secretData: '',
-      user: {}
+      user: {},
     };
   }
 
@@ -36,7 +35,21 @@ class DashboardPage extends React.Component {
       }
     });
     xhr.send();
-  }
+}
+
+
+  //   fetch("http://localhost:3002/api/test", {
+  //     method: 'get',
+  //     headers: {
+  //       'accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `bearer ${Auth.getToken()}`
+  //     },
+  //   })
+  //   .then((res)=> { return res.json()})
+  //     .then(data => console.log(data));
+  // }
+
 
   /**
    * Render the component.

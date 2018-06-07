@@ -1,6 +1,9 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import Auth from '../modules/Auth';
+
+
 
 class Goals extends React.Component {
   constructor() {
@@ -20,9 +23,17 @@ class Goals extends React.Component {
 
   }
 
-  submitButton(e) {
-
+  submitButton(evt) {
+    evt.preventDefault()
+    fetch('/api/dashboard',{
+     method: 'GET',
+     headers: {
+     Authorization: `bearer ${Auth.getToken()}`
   }
+})
+      .then ( ( res )  => {return res.json()})
+      .then (data => console.log(data));
+    }
 
   updateButton(e) {
 

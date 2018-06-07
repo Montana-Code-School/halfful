@@ -4,6 +4,7 @@ import { Card, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Goals from './Goals.js';
 
+
 const Dashboard = ({ secretData, user }) => (
   <div>
     <Card className="container">
