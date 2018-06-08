@@ -16,6 +16,7 @@ const Dashboard = ({ secretData, user }) => (
     <Goals
         waterGoal = {user.waterGoal}
         totalAmountConsumed = {user.totalAmountConsumed}
+        userId = {user._id}
      />
     </Card>
   </div>

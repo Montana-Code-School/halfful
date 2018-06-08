@@ -26,13 +26,28 @@ class Goals extends React.Component {
   }
 
   submitButton(evt) {
+    // fetch('/api/dashboard',{
+    //   method: 'GET',
+    //   headers: {
+    //   Authorization: `bearer ${Auth.getToken()}`}})
+    // .then ( ( res )  => {return res.json()})
+    // .then (data => console.log(data));
+
+    let obj = JSON.stringify({id:this.props.userId, waterGoal: this.state.waterGoal, totalAmountConsumed: this.state.totalAmountConsumed});
+    console.log("obj", obj);
     evt.preventDefault()
     fetch('/api/dashboard',{
-      method: 'GET',
+      method: 'PUT',
       headers: {
-      Authorization: `bearer ${Auth.getToken()}`}})
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `bearer ${Auth.getToken()}`
+      },
+      body: obj
+    })
     .then ( ( res )  => {return res.json()})
     .then (data => console.log(data));
+
+
   }
 
   updateButton(e) {

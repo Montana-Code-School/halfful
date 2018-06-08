@@ -21669,7 +21669,8 @@ var Dashboard = function Dashboard(_ref) {
       ),
       _react2.default.createElement(_Goals2.default, {
         waterGoal: user.waterGoal,
-        totalAmountConsumed: user.totalAmountConsumed
+        totalAmountConsumed: user.totalAmountConsumed,
+        userId: user._id
       })
     )
   );
@@ -21750,11 +21751,24 @@ var Goals = function (_React$Component) {
   _createClass(Goals, [{
     key: 'submitButton',
     value: function submitButton(evt) {
+      // fetch('/api/dashboard',{
+      //   method: 'GET',
+      //   headers: {
+      //   Authorization: `bearer ${Auth.getToken()}`}})
+      // .then ( ( res )  => {return res.json()})
+      // .then (data => console.log(data));
+
+      var obj = JSON.stringify({ id: this.props.userId, waterGoal: this.state.waterGoal, totalAmountConsumed: this.state.totalAmountConsumed });
+      console.log("obj", obj);
       evt.preventDefault();
       fetch('/api/dashboard', {
-        method: 'GET',
+        method: 'PUT',
         headers: {
-          Authorization: 'bearer ' + _Auth2.default.getToken() } }).then(function (res) {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: 'bearer ' + _Auth2.default.getToken()
+        },
+        body: obj
+      }).then(function (res) {
         return res.json();
       }).then(function (data) {
         return console.log(data);

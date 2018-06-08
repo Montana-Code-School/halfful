@@ -10,8 +10,9 @@ router.get('/dashboard', (req, res) => {
   });
 });
 
-router.get('/test', (req, res) => {
-res.json("Test route worked");
+router.put('/dashboard', (req, res) => {
+  console.log(req.body);
+  res.json("WINNING");
 });
 
 module.exports = router;
