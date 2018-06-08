@@ -1,4 +1,4 @@
-# React Passport Example Application
+# HalfFül app
 
 An example application which combines a back-end which stores user data and front-end React.js application which handles user authentication sessions.
 
