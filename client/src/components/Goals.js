@@ -22,6 +22,7 @@ class Goals extends React.Component {
     this.updateButton = this.updateButton.bind(this);
     this.goalInput = this.goalInput.bind(this);
     this.updateGoal = this.updateGoal.bind(this);
+    this.amountConsumedInput = this.amountConsumedInput.bind(this);
 
   }
 
@@ -33,22 +34,25 @@ class Goals extends React.Component {
     // .then ( ( res )  => {return res.json()})
     // .then (data => console.log(data));
 
-    let obj = JSON.stringify({id:this.props.userId, waterGoal: this.state.waterGoal, totalAmountConsumed: this.state.totalAmountConsumed});
-    console.log("obj", obj);
+    const obj = {
+      id:this.props.userId,
+      waterGoal: this.state.waterGoal,
+      totalAmountConsumed: this.state.totalAmountConsumed
+    }
+         console.log("obj", JSON.stringify(obj));
     evt.preventDefault()
     fetch('/api/dashboard',{
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json',
         Authorization: `bearer ${Auth.getToken()}`
       },
       body: obj
     })
     .then ( ( res )  => {return res.json()})
-    .then (data => console.log(data));
-
-
-  }
+    .then (data => console.log(data))
+};
 
   updateButton(e) {
       console.log(typeof this.props.totalAmountConsumed);
@@ -56,6 +60,12 @@ class Goals extends React.Component {
 
   goalInput(e) {
     this.setState({waterGoal: e.target.value})
+    console.log("waterGoal",this.state.waterGoal);
+  }
+
+  amountConsumedInput(e) {
+    this.setState({totalAmountConsumed: e.target.value})
+    console.log("totalAmountConsumed", this.state.totalAmountConsumed);
   }
 
   updateGoal(e) {
@@ -64,7 +74,7 @@ class Goals extends React.Component {
   }
   render() {
     const newTotal = this.state.totalAmountConsumed + this.state.amountJustConsumed;
-    const amountLeft = this.props.waterGoal - this.props.totalAmountConsumed;
+    const amountLeft = this.state.waterGoal - this.state.totalAmountConsumed;
 
     return (<div>
       <h3>What is your water goal today?</h3>
@@ -79,15 +89,15 @@ class Goals extends React.Component {
       <h3>How much water did you just drink?
       </h3>
       <form noValidate="noValidate" autoComplete="off">
-        <TextField onChange={this.updateGoal} id="updateWater" label="updateWater"/>
+        <TextField onChange={this.amountConsumedInput} id="updateWater" label="updateWater"/>
       </form>
       <RaisedButton onClick={this.updateButton} type="submit" label="Update" color= 'primary'/>
       <Button variant= "contained" color="primary" className = ''></Button>
 
       <h3>
-        Your daily water goal is: {this.props.waterGoal} ounces</h3>
+        Your daily water goal is: {this.state.waterGoal} ounces</h3>
       <h3>
-        Water currently consumed: {this.props.totalAmountConsumed} ounces</h3>
+        Water currently consumed: {this.state.totalAmountConsumed} ounces</h3>
       <h3>
         Amount of water to go: {amountLeft} ounces</h3>
       <br></br>

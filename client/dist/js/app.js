@@ -21744,6 +21744,7 @@ var Goals = function (_React$Component) {
     _this.updateButton = _this.updateButton.bind(_this);
     _this.goalInput = _this.goalInput.bind(_this);
     _this.updateGoal = _this.updateGoal.bind(_this);
+    _this.amountConsumedInput = _this.amountConsumedInput.bind(_this);
 
     return _this;
   }
@@ -21758,13 +21759,18 @@ var Goals = function (_React$Component) {
       // .then ( ( res )  => {return res.json()})
       // .then (data => console.log(data));
 
-      var obj = JSON.stringify({ id: this.props.userId, waterGoal: this.state.waterGoal, totalAmountConsumed: this.state.totalAmountConsumed });
-      console.log("obj", obj);
+      var obj = {
+        id: this.props.userId,
+        waterGoal: this.state.waterGoal,
+        totalAmountConsumed: this.state.totalAmountConsumed
+      };
+      console.log("obj", JSON.stringify(obj));
       evt.preventDefault();
       fetch('/api/dashboard', {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
           Authorization: 'bearer ' + _Auth2.default.getToken()
         },
         body: obj
@@ -21783,6 +21789,13 @@ var Goals = function (_React$Component) {
     key: 'goalInput',
     value: function goalInput(e) {
       this.setState({ waterGoal: e.target.value });
+      console.log("waterGoal", this.state.waterGoal);
+    }
+  }, {
+    key: 'amountConsumedInput',
+    value: function amountConsumedInput(e) {
+      this.setState({ totalAmountConsumed: e.target.value });
+      console.log("totalAmountConsumed", this.state.totalAmountConsumed);
     }
   }, {
     key: 'updateGoal',
@@ -21794,7 +21807,7 @@ var Goals = function (_React$Component) {
     key: 'render',
     value: function render() {
       var newTotal = this.state.totalAmountConsumed + this.state.amountJustConsumed;
-      var amountLeft = this.props.waterGoal - this.props.totalAmountConsumed;
+      var amountLeft = this.state.waterGoal - this.state.totalAmountConsumed;
 
       return _react2.default.createElement(
         'div',
@@ -21822,7 +21835,7 @@ var Goals = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { noValidate: 'noValidate', autoComplete: 'off' },
-          _react2.default.createElement(_TextField2.default, { onChange: this.updateGoal, id: 'updateWater', label: 'updateWater' })
+          _react2.default.createElement(_TextField2.default, { onChange: this.amountConsumedInput, id: 'updateWater', label: 'updateWater' })
         ),
         _react2.default.createElement(_RaisedButton2.default, { onClick: this.updateButton, type: 'submit', label: 'Update', color: 'primary' }),
         _react2.default.createElement(_Button2.default, { variant: 'contained', color: 'primary', className: '' }),
@@ -21830,14 +21843,14 @@ var Goals = function (_React$Component) {
           'h3',
           null,
           'Your daily water goal is: ',
-          this.props.waterGoal,
+          this.state.waterGoal,
           ' ounces'
         ),
         _react2.default.createElement(
           'h3',
           null,
           'Water currently consumed: ',
-          this.props.totalAmountConsumed,
+          this.state.totalAmountConsumed,
           ' ounces'
         ),
         _react2.default.createElement(
