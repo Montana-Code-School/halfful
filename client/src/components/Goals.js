@@ -4,9 +4,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Auth from '../modules/Auth';
 import Button from '@material-ui/core/Button';
 
-
-
-
 class Goals extends React.Component {
   constructor(props) {
     super(props);
@@ -27,20 +24,12 @@ class Goals extends React.Component {
   }
 
   submitButton(evt) {
-    // fetch('/api/dashboard',{
-    //   method: 'GET',
-    //   headers: {
-    //   Authorization: `bearer ${Auth.getToken()}`}})
-    // .then ( ( res )  => {return res.json()})
-    // .then (data => console.log(data));
-
+    evt.preventDefault();
     const obj = {
       id:this.props.userId,
       waterGoal: this.state.waterGoal,
       totalAmountConsumed: this.state.totalAmountConsumed
     }
-         console.log("obj", JSON.stringify(obj));
-    evt.preventDefault()
     fetch('/api/dashboard',{
       method: 'PUT',
       headers: {
@@ -48,7 +37,7 @@ class Goals extends React.Component {
         'Content-Type' : 'application/json',
         Authorization: `bearer ${Auth.getToken()}`
       },
-      body: obj
+      body: JSON.stringify(obj)
     })
     .then ( ( res )  => {return res.json()})
     .then (data => console.log(data))
