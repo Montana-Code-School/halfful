@@ -80,8 +80,11 @@ class Goals extends React.Component {
         <TextField onChange={this.amountConsumedInput} id="updateWater" label="updateWater"/>
       </form>
       <RaisedButton onClick={this.updateButton} type="submit" label="Update" color= 'primary'/>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f2723071239037eff13c536427ebceace1bdb681
       <h3>
         Your daily water goal is: {this.state.waterGoal} ounces</h3>
       <h3>
