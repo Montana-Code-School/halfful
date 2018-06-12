@@ -36,6 +36,7 @@ router.delete('/dashboard',function(req, res){
   User.remove({
     _id:req.user._id
   },
+
 function(err, user){
   if(err)
     res.send(err)
