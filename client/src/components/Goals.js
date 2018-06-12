@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Auth from '../modules/Auth';
 import Button from '@material-ui/core/Button';
 
+
 class Goals extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,7 @@ class Goals extends React.Component {
 
   }
   componentDidMount() {
+    console.log(this.props);
     fetch('/api/dashboard',{
       method: 'GET',
       headers: {
@@ -56,6 +58,7 @@ class Goals extends React.Component {
 
 deleteButton(evt) {
   evt.preventDefault();
+  let userDeleted = 0;
 
   fetch('/api/dashboard',{
     method: 'DELETE',
@@ -65,8 +68,18 @@ deleteButton(evt) {
       Authorization: `bearer ${Auth.getToken()}`
     }
   })
-  .then ( ( res )  => {return res.json()})
-  .then (data => console.log(data))
+  .then ( ( res )  => {
+    if(res.status === 200){
+      console.log("inside if statement");
+        // deauthenticate user
+        Auth.deauthenticateUser();
+        // change the current URL to / after logout
+        this.props.history.push('/');
+    } else {
+      console.log("you can check in, but you can never check out!!");
+    }
+  })
+
 };
 
   goalInput(e) {

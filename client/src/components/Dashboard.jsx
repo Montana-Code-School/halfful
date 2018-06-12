@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Goals from './Goals.js';
 
 
-const Dashboard = ({ secretData, user }) => (
+const Dashboard = ({ secretData, user, history }) => (
   <div>
     <Card className="container">
       <CardTitle
@@ -17,6 +17,7 @@ const Dashboard = ({ secretData, user }) => (
         waterGoal = {user.waterGoal}
         totalAmountConsumed = {user.totalAmountConsumed}
         userId = {user._id}
+        history = {history}
      />
     </Card>
   </div>

@@ -21644,7 +21644,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Dashboard = function Dashboard(_ref) {
   var secretData = _ref.secretData,
-      user = _ref.user;
+      user = _ref.user,
+      history = _ref.history;
   return _react2.default.createElement(
     'div',
     null,
@@ -21670,7 +21671,8 @@ var Dashboard = function Dashboard(_ref) {
       _react2.default.createElement(_Goals2.default, {
         waterGoal: user.waterGoal,
         totalAmountConsumed: user.totalAmountConsumed,
-        userId: user._id
+        userId: user._id,
+        history: history
       })
     )
   );
@@ -21752,6 +21754,7 @@ var Goals = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      console.log(this.props);
       fetch('/api/dashboard', {
         method: 'GET',
         headers: {
@@ -21789,7 +21792,10 @@ var Goals = function (_React$Component) {
   }, {
     key: 'deleteButton',
     value: function deleteButton(evt) {
+      var _this3 = this;
+
       evt.preventDefault();
+      var userDeleted = 0;
 
       fetch('/api/dashboard', {
         method: 'DELETE',
@@ -21799,9 +21805,15 @@ var Goals = function (_React$Component) {
           Authorization: 'bearer ' + _Auth2.default.getToken()
         }
       }).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        return console.log(data);
+        if (res.status === 200) {
+          console.log("inside if statement");
+          // deauthenticate user
+          _Auth2.default.deauthenticateUser();
+          // change the current URL to / after logout
+          _this3.props.history.push('/');
+        } else {
+          console.log("you can check in, but you can never check out!!");
+        }
       });
     }
   }, {
@@ -22290,7 +22302,11 @@ var DashboardPage = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_Dashboard2.default, { secretData: this.state.secretData, user: this.state.user });
+      return _react2.default.createElement(_Dashboard2.default, {
+        secretData: this.state.secretData,
+        user: this.state.user,
+        history: this.props.history
+      });
     }
   }]);
 
