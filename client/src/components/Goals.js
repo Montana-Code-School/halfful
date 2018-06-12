@@ -26,9 +26,8 @@ class Goals extends React.Component {
   submitButton(evt) {
     evt.preventDefault();
     const obj = {
-      id:this.props.userId,
-      waterGoal: this.state.waterGoal,
-      totalAmountConsumed: this.state.totalAmountConsumed
+      waterGoal: parseInt(this.state.waterGoal),
+      totalAmountConsumed: parseInt(this.state.totalAmountConsumed)
     }
     fetch('/api/dashboard',{
       method: 'PUT',
@@ -81,7 +80,7 @@ class Goals extends React.Component {
         <TextField onChange={this.amountConsumedInput} id="updateWater" label="updateWater"/>
       </form>
       <RaisedButton onClick={this.updateButton} type="submit" label="Update" color= 'primary'/>
-      <Button variant= "contained" color="primary" className = ''></Button>
+
 
       <h3>
         Your daily water goal is: {this.state.waterGoal} ounces</h3>

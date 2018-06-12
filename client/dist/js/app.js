@@ -21752,20 +21752,11 @@ var Goals = function (_React$Component) {
   _createClass(Goals, [{
     key: 'submitButton',
     value: function submitButton(evt) {
-      // fetch('/api/dashboard',{
-      //   method: 'GET',
-      //   headers: {
-      //   Authorization: `bearer ${Auth.getToken()}`}})
-      // .then ( ( res )  => {return res.json()})
-      // .then (data => console.log(data));
-
-      var obj = {
-        id: this.props.userId,
-        waterGoal: this.state.waterGoal,
-        totalAmountConsumed: this.state.totalAmountConsumed
-      };
-      console.log("obj", JSON.stringify(obj));
       evt.preventDefault();
+      var obj = {
+        waterGoal: parseInt(this.state.waterGoal),
+        totalAmountConsumed: parseInt(this.state.totalAmountConsumed)
+      };
       fetch('/api/dashboard', {
         method: 'PUT',
         headers: {
@@ -21773,7 +21764,7 @@ var Goals = function (_React$Component) {
           'Content-Type': 'application/json',
           Authorization: 'bearer ' + _Auth2.default.getToken()
         },
-        body: obj
+        body: JSON.stringify(obj)
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
@@ -21838,7 +21829,6 @@ var Goals = function (_React$Component) {
           _react2.default.createElement(_TextField2.default, { onChange: this.amountConsumedInput, id: 'updateWater', label: 'updateWater' })
         ),
         _react2.default.createElement(_RaisedButton2.default, { onClick: this.updateButton, type: 'submit', label: 'Update', color: 'primary' }),
-        _react2.default.createElement(_Button2.default, { variant: 'contained', color: 'primary', className: '' }),
         _react2.default.createElement(
           'h3',
           null,
