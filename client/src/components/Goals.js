@@ -16,6 +16,7 @@ class Goals extends React.Component {
     }
 
     this.submitButton = this.submitButton.bind(this);
+    this.deleteButton = this.deleteButton.bind(this);
     this.goalInput = this.goalInput.bind(this);
     this.updateGoal = this.updateGoal.bind(this);
     this.amountConsumedInput = this.amountConsumedInput.bind(this);
@@ -53,6 +54,21 @@ class Goals extends React.Component {
     .then (data => console.log(data))
 };
 
+deleteButton(evt) {
+  evt.preventDefault();
+
+  fetch('/api/dashboard',{
+    method: 'DELETE',
+    headers: {
+      'Accept' : 'application/json',
+      'Content-Type' : 'application/json',
+      Authorization: `bearer ${Auth.getToken()}`
+    }
+  })
+  .then ( ( res )  => {return res.json()})
+  .then (data => console.log(data))
+};
+
   goalInput(e) {
     this.setState({waterGoal: e.target.value})
     console.log("waterGoal",this.state.waterGoal);
@@ -87,6 +103,7 @@ class Goals extends React.Component {
         <TextField onChange={this.amountConsumedInput} id="updateWater" label="updateWater"/>
       </form>
       <RaisedButton onClick={this.submitButton} type="submit" label="Submit"/>
+      <RaisedButton onClick={this.deleteButton} type="delete" label="Delete Account"/>
       <h3>
         Your daily water goal is: {this.state.waterGoal} ounces</h3>
       <h3>

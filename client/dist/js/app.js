@@ -21739,6 +21739,7 @@ var Goals = function (_React$Component) {
     };
 
     _this.submitButton = _this.submitButton.bind(_this);
+    _this.deleteButton = _this.deleteButton.bind(_this);
     _this.goalInput = _this.goalInput.bind(_this);
     _this.updateGoal = _this.updateGoal.bind(_this);
     _this.amountConsumedInput = _this.amountConsumedInput.bind(_this);
@@ -21779,6 +21780,24 @@ var Goals = function (_React$Component) {
           Authorization: 'bearer ' + _Auth2.default.getToken()
         },
         body: JSON.stringify(obj)
+      }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        return console.log(data);
+      });
+    }
+  }, {
+    key: 'deleteButton',
+    value: function deleteButton(evt) {
+      evt.preventDefault();
+
+      fetch('/api/dashboard', {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'bearer ' + _Auth2.default.getToken()
+        }
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
@@ -21837,6 +21856,7 @@ var Goals = function (_React$Component) {
           _react2.default.createElement(_TextField2.default, { onChange: this.amountConsumedInput, id: 'updateWater', label: 'updateWater' })
         ),
         _react2.default.createElement(_RaisedButton2.default, { onClick: this.submitButton, type: 'submit', label: 'Submit' }),
+        _react2.default.createElement(_RaisedButton2.default, { onClick: this.deleteButton, type: 'delete', label: 'Delete Account' }),
         _react2.default.createElement(
           'h3',
           null,
