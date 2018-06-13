@@ -88,7 +88,7 @@ deleteButton(evt) {
   }
 
   amountConsumedInput(e) {
-    this.setState({totalAmountConsumed: e.target.value})
+    this.setState({amountJustConsumed: e.target.value})
     console.log("totalAmountConsumed", this.state.totalAmountConsumed);
   }
 
@@ -98,7 +98,7 @@ deleteButton(evt) {
   }
 
   render() {
-    const newTotal = this.state.totalAmountConsumed + this.state.amountJustConsumed;
+    const newTotal = parseInt(this.state.totalAmountConsumed, 10) + parseInt(this.state.amountJustConsumed, 10);
     const amountLeft = this.state.waterGoal - this.state.totalAmountConsumed;
 
     return (<div>
@@ -116,15 +116,21 @@ deleteButton(evt) {
         <TextField onChange={this.amountConsumedInput} id="updateWater" label="updateWater"/>
       </form>
       <RaisedButton onClick={this.submitButton} type="submit" label="Submit"/>
-      <RaisedButton onClick={this.deleteButton} type="delete" label="Delete Account"/>
+      <RaisedButton style = {style.delete} onClick={this.deleteButton} type="delete" label="Delete Account"/>
       <h3>
-        Your daily water goal is: {this.state.waterGoal} ounces</h3>
+        Your daily water goal is: {this.state.waterGoal} oz</h3>
       <h3>
-        Water currently consumed: {this.state.totalAmountConsumed} ounces</h3>
+        Water currently consumed: {newTotal} oz</h3>
       <h3>
-        Amount of water to go: {amountLeft} ounces</h3>
+        Amount of water to go: {amountLeft} oz</h3>
       <br></br>
     </div>)
   }
 };
+
+const style = {
+  delete : {
+    margin: "10px"
+  }
+}
 export default Goals;
