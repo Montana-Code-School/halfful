@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  // the entry file for the bundle
+  mode: 'development',
   entry: path.join(__dirname, '/client/src/app.jsx'),
 
   // the bundle file we will get in the result
@@ -11,20 +11,32 @@ module.exports = {
   },
 
   module: {
-
-    // apply loaders to files that meet given conditions
-
-    // npm install --save-dev babel-plugin-transform-es2015-destructuring
-    // npm install --save-dev babel-plugin-transform-object-rest-spread
-    loaders: [{
-      test: /\.jsx?$/,
-      include: path.join(__dirname, '/client/src'),
-      loader: 'babel-loader',
-      query: {
-        presets: ["react", "es2015"],
-        plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
+    rules : [
+      {
+        test: /\.jsx?$/,
+        include: path.join(__dirname, '/client/src'),
+        loader: 'babel-loader',
+        query: {
+          presets: ["react", "es2015"],
+          plugins: [
+            "transform-es2015-destructuring",
+            "transform-object-rest-spread"
+          ]
+        }
+      },
+      {
+        test: /\.css?$/,
+        loader: 'style-loader'
+      },
+      {
+        test: /\.css?$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]'
+        }
       }
-    }],
+    ]
   },
 
   // start Webpack in a watch mode, so Webpack will rebuild the bundle on changes
