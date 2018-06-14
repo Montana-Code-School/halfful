@@ -22,7 +22,7 @@ class HomePage extends React.Component {
             <CardText style={{ fontSize: '23px', color: '#4169E1' }}>To start tracking your water goals simply log in!</CardText>
           )}
           <CardText style={{ fontSize: '20px', color: '#4169E1' }}>dont have an acount? Sign Up now!</CardText>
-          // <img src="https://cdn.pixabay.com/photo/2016/07/23/17/10/radish-1537141_1280.jpg" alt="Smiley face" height="42" width="42">
+          <img src="https://cdn.pixabay.com/photo/2016/07/23/17/10/radish-1537141_1280.jpg" alt="Smiley face" height="42" width="42"/>
 
       </Card>
       </div>
