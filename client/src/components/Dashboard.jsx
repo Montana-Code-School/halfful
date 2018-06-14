@@ -6,7 +6,7 @@ import Goals from './Goals.js';
 import ProgressCard from './ProgressCard.jsx';
 
 const Dashboard = ({ secretData, user }) => (
-<div>  
+<div>
   <div>
     <Card className="container">
       <CardTitle
@@ -28,6 +28,7 @@ const Dashboard = ({ secretData, user }) => (
   </div>
 </div>
 );
+
 
 Dashboard.propTypes = {
   secretData: PropTypes.string.isRequired

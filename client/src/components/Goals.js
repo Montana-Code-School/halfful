@@ -14,6 +14,7 @@ class Goals extends React.Component {
       leftToGo: 0,
       totalAmountConsumed: 0
     }
+    
 
     this.submitButton = this.submitButton.bind(this);
     this.updateButton = this.updateButton.bind(this);
