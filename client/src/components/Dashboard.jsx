@@ -4,6 +4,7 @@ import { Card, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Goals from './Goals.js';
 import HistoryCal from './HistoryCal.jsx';
+import ProgressCard from './ProgressCard.jsx'
 
 const Dashboard = ({ secretData, user, history }) => (
   <div>
@@ -15,21 +16,23 @@ const Dashboard = ({ secretData, user, history }) => (
         />
       </Card>
     </div>
-    <div>
-      <Card className="container">
-          {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome <strong>{user.name}</strong>!<br /></CardText>}
-      <Goals
+    <div style= {style.firstCardDiv}>
+      <Card className="container" style = {style.goalCard}>
+      {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome <strong>{user.name}</strong>!<br /></CardText>}
+        <Goals
           waterGoal = {user.waterGoal}
           totalAmountConsumed = {user.totalAmountConsumed}
           userId = {user._id}
           history = {history}
-       />
+        />
       </Card>
-      <Card className="container">
-        <CardTitle/>
+      <Card className="container" style = {style.progressCard}>
+        <ProgressCard />
       </Card>
     </div>
-    <HistoryCal />
+    <div style = {style.historyDiv}>
+      <HistoryCal />
+    </div>
   </div>
 );
 
@@ -37,9 +40,22 @@ const style = {
   topheading: {
     backgroundColor: "lightblue",
     textAlign: "center",
-    height: "30%",
-    width: "75%",
     backgroundImage: "url(https://pixabay.com/photo-237489/)"
+  },
+  firstCardDiv:{
+    display: "flex",
+    justifyContent: "space-evenly"
+  },
+  goalCard: {
+    margin: '10px',
+    padding: '12px 12px 12px 12px'
+  },
+  progressCard: {
+    margin:'10px',
+    padding: '12px 12px 12px 12px'
+  },
+  historyDiv:{
+    justifyContent: "center"
   }
 }
 
