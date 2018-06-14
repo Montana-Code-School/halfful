@@ -1,15 +1,26 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
   entry: path.join(__dirname, '/client/src/app.jsx'),
-
-  // the bundle file we will get in the result
   output: {
     path: path.join(__dirname, '/client/dist/js'),
     filename: 'app.js',
   },
-
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    host: 'localhost',
+    port: 3000,
+    proxy: {
+      '^/api/*': {
+        target: 'http://localhost:3002/api/',
+        secure: false
+      }
+    }
+  },
   module: {
     rules : [
       {
@@ -23,22 +34,14 @@ module.exports = {
             "transform-object-rest-spread"
           ]
         }
-      },
-      {
-        test: /\.css?$/,
-        loader: 'style-loader'
-      },
-      {
-        test: /\.css?$/,
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
-        }
       }
     ]
   },
-
+  plugins: [
+    new webpack.HotModuleReplacementPlugin({
+      multiStep: true
+    })
+  ],
   // start Webpack in a watch mode, so Webpack will rebuild the bundle on changes
   watch: true
 };
