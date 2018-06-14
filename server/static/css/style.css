@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00bcd4;
+  color: #082e46;
   font-weight: bold;
   text-decoration: none;
   transition: color 0.4s;
@@ -20,7 +20,7 @@ a:hover {
 
 .top-bar {
   padding: 10px 15px;
-  margin-bottom: 50px;
+  margin-bottom: 0px;
 }
 .top-bar::after {
   content: '';

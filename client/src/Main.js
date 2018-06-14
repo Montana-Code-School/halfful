@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
 // import routes from './routes.js';
 
 import {
@@ -62,6 +64,7 @@ class Main extends Component {
     }
   };
 
+
   componentDidMount() {
     // check if user is logged in on refresh
     this.toggleAuthenticateStatus()
@@ -74,16 +77,18 @@ class Main extends Component {
   }
 
   render() {
+
     return (
+
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router>
-          <div>
-            <div className="top-bar">
+          <div >
+            <div  className="top-bar">
               <div className="top-bar-left">
                 <Link to="/">HalfFül</Link>
               </div>
               {this.state.authenticated ? (
-                <div className="top-bar-right">
+                <div  className="top-bar-right">
                   <Link to="/dashboard">Dashboard</Link>
                   <Link to="/logout">Log out</Link>
                 </div>
@@ -107,6 +112,21 @@ class Main extends Component {
       </MuiThemeProvider>
     );
   }
+
+
 }
+
+// const style = {
+//   main: {
+//     color: "#0b5784",
+//     // height: "100%",
+//     // width: "100%",
+//     // margin: "7px",
+//     // padding: "10px",
+//     backgroundColor: "#48D1CC",
+//     // textAlign: "center"
+//   }
+// }
+
 
 export default Main;
