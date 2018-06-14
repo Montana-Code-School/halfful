@@ -16,10 +16,10 @@ class Goals extends React.Component {
       totalAmountConsumed: 0
     }
 
+
     this.submitButton = this.submitButton.bind(this);
     this.deleteButton = this.deleteButton.bind(this);
     this.goalInput = this.goalInput.bind(this);
-    this.updateGoal = this.updateGoal.bind(this);
     this.amountConsumedInput = this.amountConsumedInput.bind(this);
 
   }
@@ -90,11 +90,6 @@ deleteButton(evt) {
   amountConsumedInput(e) {
     this.setState({amountJustConsumed: e.target.value})
     console.log("totalAmountConsumed", this.state.totalAmountConsumed);
-  }
-
-  updateGoal(e) {
-
-    this.setState({amountJustConsumed: e.target.value})
   }
 
   render() {
