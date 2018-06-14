@@ -30,7 +30,7 @@ const Dashboard = ({ secretData, user, history }) => (
         <ProgressCard />
       </Card>
     </div>
-    <div>
+    <div style = {style.historyDiv}>
       <HistoryCal />
     </div>
   </div>
@@ -53,6 +53,9 @@ const style = {
   progressCard: {
     margin:'10px',
     padding: '12px 12px 12px 12px'
+  },
+  historyDiv:{
+    justifyContent: "center"
   }
 }
 
