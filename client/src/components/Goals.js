@@ -18,7 +18,6 @@ class Goals extends React.Component {
     this.submitButton = this.submitButton.bind(this);
     this.updateButton = this.updateButton.bind(this);
     this.goalInput = this.goalInput.bind(this);
-    this.updateGoal = this.updateGoal.bind(this);
     this.amountConsumedInput = this.amountConsumedInput.bind(this);
 
   }
@@ -56,11 +55,6 @@ class Goals extends React.Component {
     this.setState({totalAmountConsumed: e.target.value})
     console.log("totalAmountConsumed", this.state.totalAmountConsumed);
   }
-
-  updateGoal(e) {
-
-    this.setState({amountJustConsumed: e.target.value})
-  }
   render() {
     const newTotal = this.state.totalAmountConsumed + this.state.amountJustConsumed;
     const amountLeft = this.state.waterGoal - this.state.totalAmountConsumed;
@@ -81,12 +75,6 @@ class Goals extends React.Component {
         <TextField onChange={this.amountConsumedInput} id="updateWater" label="updateWater"/>
       </form>
       <RaisedButton onClick={this.updateButton} type="submit" label="Update" color= 'primary'/>
-      <h3>
-        Your daily water goal is: {this.state.waterGoal} ounces</h3>
-      <h3>
-        Water currently consumed: {this.state.totalAmountConsumed} ounces</h3>
-      <h3>
-        Amount of water to go: {amountLeft} ounces</h3>
       <br></br>
     </div>)
   }

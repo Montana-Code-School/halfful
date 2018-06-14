@@ -21640,6 +21640,10 @@ var _Goals = __webpack_require__(268);
 
 var _Goals2 = _interopRequireDefault(_Goals);
 
+var _ProgressCard = __webpack_require__(568);
+
+var _ProgressCard2 = _interopRequireDefault(_ProgressCard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Dashboard = function Dashboard(_ref) {
@@ -21649,29 +21653,42 @@ var Dashboard = function Dashboard(_ref) {
     'div',
     null,
     _react2.default.createElement(
-      _Card.Card,
-      { className: 'container' },
-      _react2.default.createElement(_Card.CardTitle, {
-        title: 'HalfF\xFCl',
-        subtitle: 'Drink all the waters.'
-      }),
-      secretData && _react2.default.createElement(
-        _Card.CardText,
-        { style: { fontSize: '16px', color: 'green' } },
-        'Welcome ',
-        _react2.default.createElement(
-          'strong',
-          null,
-          user.name
+      'div',
+      null,
+      _react2.default.createElement(
+        _Card.Card,
+        { className: 'container' },
+        _react2.default.createElement(_Card.CardTitle, {
+          title: 'HalfF\xFCl',
+          subtitle: 'Drink all the waters.'
+        }),
+        secretData && _react2.default.createElement(
+          _Card.CardText,
+          { style: { fontSize: '16px', color: 'green' } },
+          'Welcome ',
+          _react2.default.createElement(
+            'strong',
+            null,
+            user.name
+          ),
+          '!',
+          _react2.default.createElement('br', null)
         ),
-        '!',
-        _react2.default.createElement('br', null)
-      ),
-      _react2.default.createElement(_Goals2.default, {
-        waterGoal: user.waterGoal,
-        totalAmountConsumed: user.totalAmountConsumed,
-        userId: user._id
-      })
+        _react2.default.createElement(_Goals2.default, {
+          waterGoal: user.waterGoal,
+          totalAmountConsumed: user.totalAmountConsumed,
+          userId: user._id
+        })
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        _Card.Card,
+        null,
+        _react2.default.createElement(_ProgressCard2.default, null)
+      )
     )
   );
 };
@@ -21743,7 +21760,6 @@ var Goals = function (_React$Component) {
     _this.submitButton = _this.submitButton.bind(_this);
     _this.updateButton = _this.updateButton.bind(_this);
     _this.goalInput = _this.goalInput.bind(_this);
-    _this.updateGoal = _this.updateGoal.bind(_this);
     _this.amountConsumedInput = _this.amountConsumedInput.bind(_this);
 
     return _this;
@@ -21790,12 +21806,6 @@ var Goals = function (_React$Component) {
       console.log("totalAmountConsumed", this.state.totalAmountConsumed);
     }
   }, {
-    key: 'updateGoal',
-    value: function updateGoal(e) {
-
-      this.setState({ amountJustConsumed: e.target.value });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var newTotal = this.state.totalAmountConsumed + this.state.amountJustConsumed;
@@ -21830,27 +21840,6 @@ var Goals = function (_React$Component) {
           _react2.default.createElement(_TextField2.default, { onChange: this.amountConsumedInput, id: 'updateWater', label: 'updateWater' })
         ),
         _react2.default.createElement(_RaisedButton2.default, { onClick: this.updateButton, type: 'submit', label: 'Update', color: 'primary' }),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Your daily water goal is: ',
-          this.state.waterGoal,
-          ' ounces'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Water currently consumed: ',
-          this.state.totalAmountConsumed,
-          ' ounces'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Amount of water to go: ',
-          amountLeft,
-          ' ounces'
-        ),
         _react2.default.createElement('br', null)
       );
     }
@@ -52273,6 +52262,121 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 568 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Card = __webpack_require__(82);
+
+var _Auth = __webpack_require__(42);
+
+var _Auth2 = _interopRequireDefault(_Auth);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ProgressCard = function (_Component) {
+  _inherits(ProgressCard, _Component);
+
+  function ProgressCard(props) {
+    _classCallCheck(this, ProgressCard);
+
+    var _this = _possibleConstructorReturn(this, (ProgressCard.__proto__ || Object.getPrototypeOf(ProgressCard)).call(this, props));
+
+    _this.state = {
+      waterGoal: 0,
+      amountJustConsumed: 0,
+      leftToGo: 0,
+      totalAmountConsumed: 0
+    };
+    return _this;
+  }
+
+  _createClass(ProgressCard, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/dashboard', {
+        method: 'GET',
+        headers: {
+          Authorization: 'bearer ' + _Auth2.default.getToken() } }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        return _this2.setState({
+          waterGoal: data.user.waterGoal,
+          totalAmountConsumed: data.user.totalAmountConsumed
+        });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var newTotal = parseInt(this.state.totalAmountConsumed, 10) + parseInt(this.state.amountJustConsumed, 10);
+      var amountLeft = this.state.waterGoal - this.state.totalAmountConsumed;
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h2',
+          null,
+          'Today\'s Progress'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Your daily water goal is: ',
+          this.state.waterGoal,
+          ' oz'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Water currently consumed: ',
+          newTotal,
+          ' oz'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Amount of water to go: ',
+          amountLeft,
+          ' oz'
+        ),
+        _react2.default.createElement('img', { src: 'https://orig00.deviantart.net/bf53/f/2015/053/1/1/copinho_by_ninainlove-d8j5yty.png', alt: 'cute glass of water', height: '150px', width: '100px', style: style.waterImg })
+      );
+    }
+  }]);
+
+  return ProgressCard;
+}(_react.Component);
+
+var style = {
+  waterImg: {
+    align: "middle"
+  }
+};
+
+exports.default = ProgressCard;
 
 /***/ })
 /******/ ]);

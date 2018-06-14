@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { Card, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Goals from './Goals.js';
-
+import ProgressCard from './ProgressCard.jsx';
 
 const Dashboard = ({ secretData, user }) => (
+<div>  
   <div>
     <Card className="container">
       <CardTitle
@@ -20,6 +21,12 @@ const Dashboard = ({ secretData, user }) => (
      />
     </Card>
   </div>
+  <div>
+    <Card>
+      <ProgressCard />
+    </Card>
+  </div>
+</div>
 );
 
 Dashboard.propTypes = {
