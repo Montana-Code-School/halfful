@@ -51,8 +51,7 @@ render() {
   }
 
   const style = {
-    waterImg: {
-      
+    waterImg: {    
       align: "middle"
     }
   }

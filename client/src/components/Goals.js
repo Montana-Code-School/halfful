@@ -112,12 +112,6 @@ deleteButton(evt) {
       </form>
       <RaisedButton onClick={this.submitButton} type="submit" label="Submit"/>
       <RaisedButton style = {style.delete} onClick={this.deleteButton} type="delete" label="Delete Account"/>
-      <h3>
-        Your daily water goal is: {this.state.waterGoal} oz</h3>
-      <h3>
-        Water currently consumed: {newTotal} oz</h3>
-      <h3>
-        Amount of water to go: {amountLeft} oz</h3>
       <br></br>
     </div>)
   }
