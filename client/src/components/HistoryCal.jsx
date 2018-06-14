@@ -9,7 +9,7 @@ export default class HistoryCal extends Component {
     let mikey = document.getElementsByClassName("historyDayTitle");
     for (var i = 0; i < mikey.length; i++) {
       if(mikey[i].dataset.day === dayOfWeek) {
-        mikey[i].parentElement.style.backgroundColor = "red";
+        mikey[i].parentElement.style.backgroundColor = "00bcd4";
       }
     }
   }

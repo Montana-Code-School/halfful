@@ -59,3 +59,8 @@ Login page:
 Dashboard which is only accessible after login:
 
 ![Alt Dashboard](/README/dashboard.png?raw=true)
+
+Mongoose connection error: MongoError: failed to connect to server [localhost:27017] on first connect [MongoError: connect ECONNREFUSED 127.0.0.1:27017]
+[nodemon] app crashed - waiting for file changes before starting...
+//this means you need to restart your mongo
+brew services start mongodb
