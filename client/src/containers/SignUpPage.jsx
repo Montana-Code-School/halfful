@@ -32,10 +32,20 @@ class SignUpPage extends React.Component {
    *
    * @param {object} event - the JavaScript event object
    */
+
   processForm(event) {
+
+
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
 
+    const obj = {
+      name: this.state.user.name,
+      email: this.state.user.email,
+      password: this.state.user.password,
+      waterGoal: this.state.user.waterGoal,
+      totalAmountConsumed: this.state.user.totalAmountConsumed
+    }
     // create a string for an HTTP body message
     const name = encodeURIComponent(this.state.user.name);
     const email = encodeURIComponent(this.state.user.email);
@@ -44,12 +54,34 @@ class SignUpPage extends React.Component {
     const totalAmountConsumed = encodeURIComponent(this.state.user.totalAmountConsumed);
     const formData = `name=${name}&email=${email}&password=${password}&waterGoal=${waterGoal}&totalAmountConsumed=${totalAmountConsumed}`;
 
+    // fetch('/auth/signup',{
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept' : 'application/json',
+    //     'Content-Type' : 'application/json',
+    //   },
+    //   body: JSON.stringify(obj)
+    // })
+    // .then ( ( res )  => {return res.json()})
+    // .then (data => console.log(data))
+
+
+
+
+
     // create an AJAX request
     const xhr = new XMLHttpRequest();
+    xhr.open('get', 'api/test');
+    console.log("about to test");
+    xhr.addEventListener('load', () => {
+      console.log("event", xhr.status);
+    });
+
     xhr.open('post', '/auth/signup');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
+        console.log("event", xhr.status);
       if (xhr.status === 200) {
         // success
 
@@ -60,7 +92,7 @@ class SignUpPage extends React.Component {
 
         // set a message
         localStorage.setItem('successMessage', xhr.response.message);
-
+        console.log("xhr.status", xhr.status);
         // redirect user after sign up to login page
         this.props.history.push('/login');
       } else {

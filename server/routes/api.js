@@ -46,4 +46,10 @@ function(err, user){
 });
 });
 
+router.get('/test', (req, res, next) => {
+  res.status(200).json({
+    message: "Hello"
+  })
+})
+
 module.exports = router;
