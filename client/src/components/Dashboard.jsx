@@ -4,22 +4,21 @@ import { Card, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Goals from './Goals.js';
 import HistoryCal from './HistoryCal.jsx';
+// import styles from './Dashboard.css';
 
 const Dashboard = ({ secretData, user, history }) => (
 <div>
-  <div>
-    <Card style={{ width: "100%"}}  className="container">
+  <div style={style.topheading} className="topHeading">
+    <Card>
       <CardTitle
         title="HalfFül"
         subtitle="Drink all the waters."
       />
     </Card>
   </div>
-  <div style={{display: "flex", justifyContent: "space-around"}}>
+  <div>
     <Card className="container">
-      <CardTitle
-
-      />
+      <CardTitle/>
     {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome <strong>{user.name}</strong>!<br /></CardText>}
     <Goals
         waterGoal = {user.waterGoal}
@@ -29,15 +28,23 @@ const Dashboard = ({ secretData, user, history }) => (
      />
     </Card>
     <Card className="container">
-      <CardTitle
-
-      />
+      <CardTitle/>
     </Card>
 
   </div>
   <HistoryCal />
 </div>
 );
+
+const style = {
+  topheading: {
+    backgroundColor: "lightblue",
+    textAlign: "center",
+    height: "30%",
+    width: "75%",
+    backgroundImage: "url(https://pixabay.com/photo-237489/)"
+  }
+}
 
 Dashboard.propTypes = {
   secretData: PropTypes.string.isRequired
