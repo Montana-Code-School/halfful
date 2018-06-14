@@ -1,4 +1,4 @@
-# React Passport Example Application
+# HalfFül app
 
 An example application which combines a back-end which stores user data and front-end React.js application which handles user authentication sessions.
 
@@ -59,3 +59,8 @@ Login page:
 Dashboard which is only accessible after login:
 
 ![Alt Dashboard](/README/dashboard.png?raw=true)
+
+Mongoose connection error: MongoError: failed to connect to server [localhost:27017] on first connect [MongoError: connect ECONNREFUSED 127.0.0.1:27017]
+[nodemon] app crashed - waiting for file changes before starting...
+//this means you need to restart your mongo
+brew services start mongodb

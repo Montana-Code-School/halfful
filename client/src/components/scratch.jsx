@@ -10,3 +10,8 @@ fetch('/api/dashboard',{
 
 
 blue button  {/* <Button variant= "contained" color="primary" className = ''></Button> */}
+
+background-image: url("https://pixabay.com/photo-237489/");
+
+
+<CardTitle style={style.topHeader}
