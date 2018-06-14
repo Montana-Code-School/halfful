@@ -37,25 +37,17 @@ class DashboardPage extends React.Component {
     xhr.send();
 }
 
-
-  //   fetch("http://localhost:3002/api/test", {
-  //     method: 'get',
-  //     headers: {
-  //       'accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `bearer ${Auth.getToken()}`
-  //     },
-  //   })
-  //   .then((res)=> { return res.json()})
-  //     .then(data => console.log(data));
-  // }
-
-
   /**
    * Render the component.
    */
   render() {
-    return (<Dashboard secretData={this.state.secretData} user={this.state.user} />);
+    return (
+      <Dashboard
+        secretData={this.state.secretData}
+        user={this.state.user}
+        history = {this.props.history}
+      />
+    );
   }
 
 }
