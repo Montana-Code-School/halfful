@@ -88,7 +88,7 @@ deleteButton(evt) {
   }
 
   amountConsumedInput(e) {
-    this.setState({amountJustConsumed: e.target.value})
+    this.setState({totalAmountConsumed: e.target.value})
     console.log("totalAmountConsumed", this.state.totalAmountConsumed);
   }
 
