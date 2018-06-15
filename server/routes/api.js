@@ -18,7 +18,11 @@ router.put('/dashboard', (req, res) => {
     if (err)
       res.send(err);
     for(var key in req.body) {
-      user[key] = req.body[key];
+      if(key === 'amountJustConsumed'){
+        user.totalAmountConsumed = user.totalAmountConsumed + req.body.amountJustConsumed
+      } else {
+        user[key] = req.body[key];
+      }
     }
 
     user.save(function(err) {
