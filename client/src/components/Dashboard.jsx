@@ -6,7 +6,7 @@ import Goals from './Goals.js';
 import HistoryCal from './HistoryCal.jsx';
 import ProgressCard from './ProgressCard.jsx'
 
-const Dashboard = ({ secretData, user, history }) => (
+const Dashboard = ({ secretData, user, history, stateHandler, waterObject }) => (
   <div>
     <div style={style.topheading} className="topHeading">
       <Card>
@@ -24,10 +24,16 @@ const Dashboard = ({ secretData, user, history }) => (
           totalAmountConsumed = {user.totalAmountConsumed}
           userId = {user._id}
           history = {history}
+          stateHandler = {stateHandler}
         />
       </Card>
       <Card className="container" style = {style.progressCard}>
-        <ProgressCard />
+        <ProgressCard
+          waterGoal = {waterObject.waterGoal}
+          totalAmountConsumed = {waterObject.totalAmountConsumed}
+          leftToGo = {waterObject.leftToGo}
+          amountJustConsumed = {waterObject.amountJustConsumed}
+        />
       </Card>
     </div>
     <div style = {style.historyDiv}>

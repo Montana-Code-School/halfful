@@ -13,7 +13,68 @@ class DashboardPage extends React.Component {
     this.state = {
       secretData: '',
       user: {},
+      waterGoal: 0,
+      totalAmountConsumed:0,
+      leftToGo:0,
+      amountJustConsumed:0
     };
+    this.submitButton = this.submitButton.bind(this);
+    this.deleteButton = this.deleteButton.bind(this);
+    this.goalInput = this.goalInput.bind(this);
+    this.amountConsumedInput = this.amountConsumedInput.bind(this);
+  }
+
+  // const newTotal = ;
+  // const amountLeft = ;
+
+  submitButton(evt) {
+    evt.preventDefault();
+    const obj = {
+      waterGoal: parseInt(this.state.waterGoal),
+      amountJustConsumed: parseInt(this.state.amountJustConsumed)
+    }
+    fetch('/api/dashboard',{
+      method: 'PUT',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json',
+        Authorization: `bearer ${Auth.getToken()}`
+      },
+      body: JSON.stringify(obj)
+    })
+    .then ( ( res )  => {return res.json()})
+    .then (data => console.log(data))
+};
+
+deleteButton(evt) {
+  evt.preventDefault();
+  let userDeleted = 0;
+
+  fetch('/api/dashboard',{
+    method: 'DELETE',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json',
+        Authorization: `bearer ${Auth.getToken()}`
+      }
+   })
+    .then ( ( res )  => {
+      if(res.status === 200){
+          Auth.deauthenticateUser();
+          this.props.history.push('/');
+      } else {
+        console.log("you can check in, but you can never check out!!");
+      }
+    })
+  };
+
+  goalInput(e) {
+    this.setState({waterGoal: e.target.value})
+    console.log("waterGoal",this.state.waterGoal);
+  }
+
+  amountConsumedInput(e) {
+    this.setState({amountJustConsumed: e.target.value})
   }
 
   /**
@@ -35,21 +96,29 @@ class DashboardPage extends React.Component {
       }
     });
     xhr.send();
-}
+  }
 
-  /**
-   * Render the component.
-   */
   render() {
     return (
       <Dashboard
-        secretData={this.state.secretData}
-        user={this.state.user}
-        history = {this.props.history}
+        secretData= { this.state.secretData }
+        user= { this.state.user }
+        history = { this.props.history }
+        stateHandler = {{
+          submitButton: this.submitButton,
+          deleteButton: this.deleteButton,
+          goalInput: this.goalInput,
+          amountConsumedInput: this.amountConsumedInput
+        }}
+        waterObject = {{
+          waterGoal: this.state.waterGoal,
+          totalAmountConsumed: this.state.totalAmountConsumed,
+          leftToGo: this.state.leftToGo,
+          amountJustConsumed: this.state.amountJustConsumed
+        }}
       />
     );
   }
-
 }
 
 export default DashboardPage;
