@@ -43,7 +43,10 @@ class DashboardPage extends React.Component {
       body: JSON.stringify(obj)
     })
     .then ( ( res )  => {return res.json()})
-    .then (data => console.log(data))
+    .then (( data ) => {
+      console.log(data)
+      document.getElementById("cup").classList.add("cup")
+    })
 };
 
 deleteButton(evt) {
@@ -91,7 +94,9 @@ deleteButton(evt) {
       if (xhr.status === 200) {
         this.setState({
           secretData: xhr.response.message,
-          user: xhr.response.user
+          user: xhr.response.user,
+          waterGoal: xhr.response.user.waterGoal,
+          totalAmountConsumed : xhr.response.user.totalAmountConsumed
         });
       }
     });

@@ -20,7 +20,7 @@ render() {
         <h3>
           Amount of water to go: {this.props.waterGoal - this.props.totalAmountConsumed} oz
         </h3>
-        <img src= "https://orig00.deviantart.net/bf53/f/2015/053/1/1/copinho_by_ninainlove-d8j5yty.png" alt="cute glass of water" height = "150px" width = "100px" style = {style.waterImg}/>
+        <img id="cup" src= "https://orig00.deviantart.net/bf53/f/2015/053/1/1/copinho_by_ninainlove-d8j5yty.png" alt="cute glass of water" height = "150px" width = "100px" style = {style.waterImg}/>
     </div>
       )
     }
