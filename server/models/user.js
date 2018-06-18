@@ -7,6 +7,17 @@ const UserSchema = new mongoose.Schema({
     type: String,
     index: { unique: true }
   },
+  {
+    currentDay : ISODate(" "),
+    values: {
+      0: "Sunday",
+      1: "Monday",
+      2: "Tuesday",
+      3: "Wednesday",
+      4: "Thursday",
+      5: "Friday",
+      6: "Saturday"
+    },
   password: String,
   waterGoal: Number,
   totalAmountConsumed: Number,
