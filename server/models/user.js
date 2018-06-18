@@ -10,11 +10,8 @@ const UserSchema = new mongoose.Schema({
   password: String,
   waterGoal: Number,
   totalAmountConsumed: Number,
-  name: String,
-  day: Number
+  name: String
 });
-// object called day - all the data for the user for the day and that index
-// will be referenced when displaying the data in HistoryCal
 
 /**
  * Compare the passed password with the value in the database. A model method.
