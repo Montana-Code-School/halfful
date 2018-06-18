@@ -30,17 +30,10 @@ class HomePage extends React.Component {
   }
 };
 
-
 const style = {
   back: {
     height: "100%",
     width: "100%",
-    // margin: "7px",
-    // padding: "10px",
     backgroundColor: "#48D1CC",
-    // textAlign: "center"
   }
 }
-
-
-export default HomePage;
