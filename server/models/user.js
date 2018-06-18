@@ -2,22 +2,25 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // define the User model schema
+//Change how we save data to Sunday - Saturday and fetching said data
+//Make a new object for day
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     index: { unique: true }
   },
-  {
-    currentDay : ISODate(" "),
+  day :{
+    currentDay : Date,
     values: {
-      0: "Sunday",
-      1: "Monday",
-      2: "Tuesday",
-      3: "Wednesday",
-      4: "Thursday",
-      5: "Friday",
-      6: "Saturday"
-    },
+      0:String,
+      1:String,
+      2: String,
+      3: String,
+      4: String,
+      5: String,
+      6: String
+    }
+  },
   password: String,
   waterGoal: Number,
   totalAmountConsumed: Number,

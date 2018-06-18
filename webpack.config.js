@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  // the entry file for the bundle
+  mode: 'development',
   entry: path.join(__dirname, '/client/src/app.jsx'),
 
   // the bundle file we will get in the result
@@ -16,7 +16,7 @@ module.exports = {
 
     // npm install --save-dev babel-plugin-transform-es2015-destructuring
     // npm install --save-dev babel-plugin-transform-object-rest-spread
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       include: path.join(__dirname, '/client/src'),
       loader: 'babel-loader',
