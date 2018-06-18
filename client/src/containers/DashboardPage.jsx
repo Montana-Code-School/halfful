@@ -28,11 +28,15 @@ class DashboardPage extends React.Component {
   // const amountLeft = ;
 
   submitButton(evt) {
+
     evt.preventDefault();
     const obj = {
       waterGoal: parseInt(this.state.waterGoal),
-      amountJustConsumed: parseInt(this.state.amountJustConsumed)
+      amountJustConsumed: parseInt(this.state.amountJustConsumed),
+      totalAmountConsumed: parseInt(this.state.totalAmountConsumedd)
     }
+    const newLeftToGo = this.state.waterGoal - this.state.totalAmountConsumed
+
     fetch('/api/dashboard',{
       method: 'PUT',
       headers: {
@@ -45,9 +49,11 @@ class DashboardPage extends React.Component {
     .then ( ( res )  => {return res.json()})
     .then (( data ) => {
       console.log(data)
-      document.getElementById("cup").classList.add("cup")
-    })
-};
+      this.setState({
+        leftToGo: newLeftToGo
+      })
+  })
+}
 
 deleteButton(evt) {
   evt.preventDefault();
@@ -73,11 +79,11 @@ deleteButton(evt) {
 
   goalInput(e) {
     this.setState({waterGoal: e.target.value})
-    console.log("waterGoal",this.state.waterGoal);
   }
 
   amountConsumedInput(e) {
     this.setState({amountJustConsumed: e.target.value})
+    console.log("amountJustConsumed :", this.state.amountJustConsumed);
   }
 
   /**
@@ -96,7 +102,8 @@ deleteButton(evt) {
           secretData: xhr.response.message,
           user: xhr.response.user,
           waterGoal: xhr.response.user.waterGoal,
-          totalAmountConsumed : xhr.response.user.totalAmountConsumed
+          totalAmountConsumed : xhr.response.user.totalAmountConsumed,
+          amountJustConsumed: xhr.response.user.amountJustConsumed
         });
       }
     });

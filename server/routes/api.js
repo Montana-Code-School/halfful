@@ -19,10 +19,11 @@ router.put('/dashboard', (req, res) => {
       res.send(err);
     for(var key in req.body) {
       if(key === 'amountJustConsumed'){
-        user.totalAmountConsumed = user.totalAmountConsumed + req.body.amountJustConsumed
+        user.totalAmountConsumed = parseInt(user.totalAmountConsumed, 10) + parseInt(req.body.amountJustConsumed, 10);
       } else {
         user[key] = req.body[key];
       }
+      console.log(user.totalAmountConsumedat);
     }
 
     user.save(function(err) {

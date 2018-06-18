@@ -7,6 +7,9 @@ export default class ProgressCard extends Component {
     super(props);
   }
 
+componentDidMount() {
+  console.log("waterGoal :", this.props.waterGoal, "totalAmountConsumed :", this.props.totalAmountConsumed, "amountJustConsumed :", this.props.amountJustConsumed);
+}
 render() {
   return (
     <div>
@@ -15,10 +18,10 @@ render() {
           Your daily water goal is: {this.props.waterGoal} oz
         </h3>
         <h3>
-          Water currently consumed: {parseInt(this.props.totalAmountConsumed, 10) + parseInt(this.props.amountJustConsumed, 10)} oz
+          Water currently consumed: {this.props.totalAmountConsumed} oz
         </h3>
         <h3>
-          Amount of water to go: {this.props.waterGoal - this.props.totalAmountConsumed} oz
+          Amount of water to go: {this.props.leftToGo} oz
         </h3>
         <img id="cup" src= "https://orig00.deviantart.net/bf53/f/2015/053/1/1/copinho_by_ninainlove-d8j5yty.png" alt="cute glass of water" height = "150px" width = "100px" style = {style.waterImg}/>
     </div>
