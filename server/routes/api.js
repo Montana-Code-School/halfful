@@ -18,7 +18,12 @@ router.put('/dashboard', (req, res) => {
     if (err)
       res.send(err);
     for(var key in req.body) {
-      user[key] = req.body[key];
+      if(key === 'amountJustConsumed'){
+        user.totalAmountConsumed = parseInt(user.totalAmountConsumed, 10) + parseInt(req.body.amountJustConsumed, 10);
+      } else {
+        user[key] = req.body[key];
+      }
+      console.log(user.totalAmountConsumedat);
     }
 
     user.save(function(err) {
@@ -29,8 +34,21 @@ router.put('/dashboard', (req, res) => {
       });
     });
   });
-
 })
 
+
+router.delete('/dashboard',function(req, res){
+  User.remove({
+    _id:req.user._id
+  },
+
+function(err, user){
+  if(err)
+    res.send(err)
+  res.json({
+    message:"Successfully deleted"
+  });
+});
+});
 
 module.exports = router;

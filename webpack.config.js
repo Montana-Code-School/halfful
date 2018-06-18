@@ -11,20 +11,41 @@ module.exports = {
   },
 
   module: {
-
-    // apply loaders to files that meet given conditions
-
-    // npm install --save-dev babel-plugin-transform-es2015-destructuring
-    // npm install --save-dev babel-plugin-transform-object-rest-spread
-    rules: [{
-      test: /\.jsx?$/,
-      include: path.join(__dirname, '/client/src'),
-      loader: 'babel-loader',
-      query: {
-        presets: ["react", "es2015"],
-        plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
+    rules : [
+      {
+        test: /\.jsx?$/,
+        include: path.join(__dirname, '/client/src'),
+        loader: 'babel-loader',
+        query: {
+          presets: ["react", "es2015"],
+          plugins: [
+            "transform-es2015-destructuring",
+            "transform-object-rest-spread"
+          ]
+        }
+      },
+      {
+        test: /\.css?$/,
+        loader: 'style-loader'
+      },
+      {
+        test: /\.css?$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]'
+        }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+                {
+                    loader: "file-loader",
+                    options: {}
+                }
+        ]
       }
-    }],
+    ]
   },
 
   // start Webpack in a watch mode, so Webpack will rebuild the bundle on changes

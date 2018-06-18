@@ -16,7 +16,10 @@ export default class HistoryCal extends Component {
 
   render() {
     const dayComponents = [
+<<<<<<< HEAD
       <HistoryDay day={'Sunday'} goal={'20'} consumed={'14'} togo={'6'} />,
+=======
+>>>>>>> 2cd6dcb2e2c8c3a50e833e72a756ffeb8b338745
       <HistoryDay day={'Monday'} goal={'20'} consumed={'14'} togo={'6'} />,
       <HistoryDay day={'Tuesday'} goal={'20'} consumed={'14'} togo={'6'} />,
       <HistoryDay day={'Wednesday'} goal={'20'} consumed={'14'} togo={'6'} />,

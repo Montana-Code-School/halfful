@@ -2,9 +2,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // define the User model schema
+<<<<<<< HEAD
 //Change how we save data to Sunday - Saturday and fetching said data
 //Make a new object for day
 const UserSchema = new mongoose.Schema({
+=======
+const UserSchema = new mongoose.Schema(
+  {
+>>>>>>> 2cd6dcb2e2c8c3a50e833e72a756ffeb8b338745
   email: {
     type: String,
     index: { unique: true }
@@ -24,9 +29,9 @@ const UserSchema = new mongoose.Schema({
   password: String,
   waterGoal: Number,
   totalAmountConsumed: Number,
+  amountJustConsumed: Number,
   name: String
 });
-
 
 /**
  * Compare the passed password with the value in the database. A model method.
