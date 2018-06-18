@@ -15,8 +15,9 @@ module.exports = new PassportLocalStrategy({
     email: email.trim(),
     password: password.trim(),
     name: req.body.name.trim(),
-    waterGoal: req.body.waterGoal.trim(),
-    totalAmountConsumed: req.body.totalAmountConsumed.trim()
+    waterGoal: req.body.waterGoal,
+    totalAmountConsumed: req.body.totalAmountConsumed,
+    amountJustConsumed: req.body.amountJustConsumed
   };
 
   const newUser = new User(userData);

@@ -4,7 +4,7 @@ import { Card, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Goals from './Goals.js';
 import HistoryCal from './HistoryCal.jsx';
-import ProgressCard from './ProgressCard.jsx'
+import ProgressCard from './ProgressCard.jsx';
 
 const Dashboard = ({ secretData, user, history, stateHandler, waterObject }) => (
   <div>
